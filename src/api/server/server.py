@@ -6,7 +6,7 @@ import io
 import ffmpeg
 
 app = Flask(__name__)
-CORS(app, origins="http://localhost:8080")  # Restricting to specific origin
+CORS(app, origins="http://localhost:3000")  # Restricting to specific origin
 
 @app.route('/convert', methods=['POST'])
 def convert_audio():
@@ -18,8 +18,8 @@ def convert_audio():
         audio_file = io.BytesIO(audio_data) # Convert the data to a file-like object
 
         # Temporary file for storing the input WebM file
-        input_file = '../assets/input.webm'
-        output_file = '../assets/audio.mp3'
+        input_file = '../../assets/input.webm'
+        output_file = '../../assets/audio.mp3'
 
         # Remove the file if it already exists
         if os.path.exists(output_file):

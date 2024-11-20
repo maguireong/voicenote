@@ -6,8 +6,9 @@ const webpack = require("webpack");
 module.exports = {
   entry: "./src/index.tsx", // Entry point of your app
   output: {
-    filename: "bundle.js", // Output bundle
+    filename: "static/js/bundle.js", // JavaScript bundle
     path: path.resolve(__dirname, "build"), // Output directory
+    publicPath: "/", // Ensures correct routing for SPAs
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js"], // File extensions to resolve
@@ -46,7 +47,7 @@ module.exports = {
     historyApiFallback: true, // Useful for SPAs
     compress: true,
     open: true,
-    port: 8080,
+    port: 3000,
     hot: true, // Enable Hot Module Replacement
   },
   mode: "development", // Set mode to development

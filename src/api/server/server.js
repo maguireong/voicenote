@@ -12,12 +12,12 @@ app.get("/transcribe", (req, res) => {
   console.log("Transcribing...");
 
   // Define absolute paths for audio and output text file
-  const audioPath = "../assets/audio.mp3";
-  const outputPath = "../assets/audio.txt";
+  const audioPath = "../../assets/audio.mp3";
+  const outputPath = "../../assets/audio.txt";
 
   // Execute the Python script using the correct paths
   exec(
-    `python3 "../scripts/transcribe.py" "${audioPath}" "${outputPath}"`,
+    `python3 "../../scripts/transcribe.py" "${audioPath}" "${outputPath}"`,
     (error, stdout, stderr) => {
       console.log("Transcription complete, sending response back");
       if (error) {
