@@ -7,7 +7,7 @@ module.exports = {
   entry: "./src/index.tsx", // Entry point of your app
   output: {
     filename: "bundle.js", // Output bundle
-    path: path.resolve(__dirname, "dist"), // Output directory
+    path: path.resolve(__dirname, "build"), // Output directory
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js"], // File extensions to resolve
@@ -41,7 +41,7 @@ module.exports = {
   ],
   devServer: {
     static: {
-      directory: path.join(__dirname, "dist"),
+      directory: path.join(__dirname, "build"),
     },
     historyApiFallback: true, // Useful for SPAs
     compress: true,
