@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { convertWebMToMP3, startSpeechToTextConverter } from "./utils";
 
 const App: React.FC = () => {
@@ -9,7 +9,7 @@ const App: React.FC = () => {
   const audioRecorder = useRef<AudioRecorder | null>(null);
   const elapsedTimeRef = useRef<NodeJS.Timeout | null>(null);
   const startTimeRef = useRef<Date | null>(null);
-  const [uploadingStatus, setUploadingStatus] = useState<string>(null);
+  const [uploadingStatus, setUploadingStatus] = useState<string | null>(null);
 
   const maximumRecordingTimeInHours = 1;
 
@@ -149,8 +149,8 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="bg-red-600">
-      {error && <div className="error">{error}</div>}
+    <div>
+      {error && <div>{error}</div>}
       {!isRecording && (
         <button
           onClick={startAudioRecording}

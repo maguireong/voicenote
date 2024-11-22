@@ -5,10 +5,25 @@ from flask_cors import CORS  # Import CORS
 import io
 import ffmpeg
 
-app = Flask(__name__)
-CORS(app, origins="http://localhost:3000")  # Restricting to specific origin
+from dotenv import load_dotenv
+load_dotenv()
 
-@app.route('/convert', methods=['POST'])
+app = Flask(__name__)
+
+PORT = os.getenv("PORT", "5001")
+FLASK_ENV = os.getenv("ENV", "development")
+BASE_URL = os.getenv("BASE_URL", ("*"))
+
+if FLASK_ENV == "production":
+    print("Running in production mode")
+else:
+    print("Running in development mode")
+    print(BASE_URL)
+
+# Use environment variables for configuration
+CORS(app, origins="*")
+
+@app.route('/api/convert', methods=['POST'])
 def convert_audio():
     try:
         # Retrieve the audio data from the request
@@ -18,8 +33,8 @@ def convert_audio():
         audio_file = io.BytesIO(audio_data) # Convert the data to a file-like object
 
         # Temporary file for storing the input WebM file
-        input_file = '../../assets/input.webm'
-        output_file = '../../assets/audio.mp3'
+        input_file = '../src/assets/input.webm'
+        output_file = '../src/assets/audio.mp3'
 
         # Remove the file if it already exists
         if os.path.exists(output_file):
@@ -40,4 +55,4 @@ def convert_audio():
         return str(e), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5001)
+    app.run(debug=True, host="0.0.0.0", port=5001)
