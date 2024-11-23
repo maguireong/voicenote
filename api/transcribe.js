@@ -9,15 +9,17 @@ module.exports = async (req, res) => {
       // Define absolute paths for audio and output text file
       // const audioPath = path.resolve(__dirname, "../public/audio.mp3");
       // const outputPath = path.resolve(__dirname, "../public/audio.txt");
+      // const transcribeScriptPath = path.resolve(
+      //     __dirname,
+      //     "../src/scripts/transcribe.py"
+      //   )
       const audioPath = "/tmp/audio.mp3";
       const outputPath = "/tmp/audio.txt";
+      const transcribeScriptPath = "../src/scripts/transcribe.py";
 
       // Execute the Python script using the correct paths
       exec(
-        `python3 "${path.resolve(
-          __dirname,
-          "../src/scripts/transcribe.py"
-        )}" "${audioPath}" "${outputPath}"`,
+        `python3 ${transcribeScriptPath} "${audioPath}" "${outputPath}"`,
         (error, stdout, stderr) => {
           if (error) {
             console.error(`Execution error: ${error.message}`);
