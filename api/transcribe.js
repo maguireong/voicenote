@@ -7,8 +7,8 @@ module.exports = async (req, res) => {
       console.log("Transcribing...");
 
       // Define absolute paths for audio and output text file
-      const audioPath = path.resolve(__dirname, "../src/assets/audio.mp3");
-      const outputPath = path.resolve(__dirname, "../src/assets/audio.txt");
+      const audioPath = path.resolve(__dirname, "../public/audio.mp3");
+      const outputPath = path.resolve(__dirname, "../public/audio.txt");
 
       // Execute the Python script using the correct paths
       exec(
