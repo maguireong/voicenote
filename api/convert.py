@@ -23,7 +23,7 @@ else:
 CORS(app, resources={
     r"/api/*": {  # Apply CORS to all endpoints under `/api/*`
         "origins": [
-            "https://https://voicenote-kv38qyz53-maguireongs-projects.vercel.app",  # Deployed frontend domain
+            "https://*.vercel.app", # Deployed frontend domain
             "http://localhost:3000"  # Local testing
         ],
         "methods": ["GET", "POST"],  # Allowed HTTP methods

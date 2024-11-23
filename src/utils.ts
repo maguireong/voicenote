@@ -1,14 +1,14 @@
 import { createPage } from "./notionClient/createPage";
 
 const convertUrl =
-  process.env.ENV === "production"
-    ? "/api/convert"
-    : `http://localhost:5000/api/convert`; // Local API for development
+  process.env.ENV === "development"
+    ? `http://localhost:5000/api/convert` // Local API for development
+    : "/api/convert";
 
 const transcribeUrl =
-  process.env.ENV === "production"
-    ? "/api/transcribe"
-    : `http://localhost:3000/api/transcribe`;
+  process.env.ENV === "development"
+    ? `http://localhost:3000/api/transcribe`
+    : "/api/transcribe";
 
 console.log("ENV in code:", process.env.ENV);
 console.log("NEXT_PUBLIC_ENV in code:", process.env.NEXT_PUBLIC_ENV);
