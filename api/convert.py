@@ -1,10 +1,9 @@
 import base64
 import os
 from flask import Flask, request, send_file
+from moviepy.editor import AudioFileClip
 from flask_cors import CORS  # Import CORS
 import io
-import ffmpeg_static  # The path to the FFmpeg binary
-import ffmpeg
 
 # from dotenv import load_dotenv
 # load_dotenv()
@@ -59,7 +58,8 @@ def convert_audio():
 
         # Use FFmpeg to convert the WebM file to MP3
         # ffmpeg.input(input_file).output(output_file, codec='libmp3lame', audio_bitrate='192k').run()
-        ffmpeg.input(input_file).output(output_file, codec='libmp3lame', audio_bitrate='192k').run()
+        audio = AudioFileClip(input_file)
+        audio.write_audiofile(output_file, codec='libmp3lame', ffmpeg_params=["-b:a", "192k"])
 
         # Return the converted MP3 file
         return send_file(output_file, mimetype='audio/mp3', as_attachment=True, download_name='converted_audio.mp3')
