@@ -5,19 +5,19 @@ from flask_cors import CORS  # Import CORS
 import io
 import ffmpeg
 
-from dotenv import load_dotenv
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
 
 app = Flask(__name__)
 
-FLASK_ENV = os.getenv("ENV", "development")
-BASE_URL = os.getenv("BASE_URL", ("*"))
+# FLASK_ENV = os.getenv("ENV", "development")
+# BASE_URL = os.getenv("BASE_URL", ("*"))
 
-if FLASK_ENV == "production":
-    print("Running in production mode")
-else:
-    print("Running in development mode")
-    print(BASE_URL)
+# if FLASK_ENV == "production":
+#     print("Running in production mode")
+# else:
+#     print("Running in development mode")
+#     print(BASE_URL)
 
 # Use environment variables for configuration
 CORS(app, resources={
