@@ -59,7 +59,7 @@ def convert_audio():
 
         # Use FFmpeg to convert the WebM file to MP3
         # ffmpeg.input(input_file).output(output_file, codec='libmp3lame', audio_bitrate='192k').run()
-        ffmpeg.input(input_file).output(output_file, codec='libmp3lame', audio_bitrate='192k').run(cmd=ffmpeg_static)
+        ffmpeg.input(input_file).output(output_file, codec='libmp3lame', audio_bitrate='192k').run()
 
         # Return the converted MP3 file
         return send_file(output_file, mimetype='audio/mp3', as_attachment=True, download_name='converted_audio.mp3')
