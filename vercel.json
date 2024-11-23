@@ -12,5 +12,8 @@
   "env": {
     "NEXT_PUBLIC_ENV": "production",
     "ENV": "production"
-  }
+  },
+    "files": [
+    "ffmpeg/**"
+  ]
 }

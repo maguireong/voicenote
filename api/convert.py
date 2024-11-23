@@ -3,6 +3,7 @@ import os
 from flask import Flask, request, send_file
 from flask_cors import CORS  # Import CORS
 import io
+import ffmpeg_static  # The path to the FFmpeg binary
 import ffmpeg
 
 # from dotenv import load_dotenv
@@ -32,8 +33,6 @@ CORS(app, resources={
     }
 })
 
-ffmpeg_path = os.path.join(os.getcwd(), 'ffmpeg', 'ffmpeg')  # Path to your bundled binary
-
 @app.route('/api/convert', methods=['POST'])
 def convert_audio():
     try:
@@ -60,7 +59,7 @@ def convert_audio():
 
         # Use FFmpeg to convert the WebM file to MP3
         # ffmpeg.input(input_file).output(output_file, codec='libmp3lame', audio_bitrate='192k').run()
-        ffmpeg.input(input_file).output(output_file, codec='libmp3lame', audio_bitrate='192k').run(cmd=ffmpeg_path)
+        ffmpeg.input(input_file).output(output_file, codec='libmp3lame', audio_bitrate='192k').run(cmd=ffmpeg_static)
 
         # Return the converted MP3 file
         return send_file(output_file, mimetype='audio/mp3', as_attachment=True, download_name='converted_audio.mp3')
