@@ -43,8 +43,10 @@ def convert_audio():
         audio_file = io.BytesIO(audio_data) # Convert the data to a file-like object
 
         # Temporary file for storing the input WebM file
-        input_file = '../public/input.webm'
-        output_file = '../public/audio.mp3'
+        # input_file = '../public/input.webm'
+        # output_file = '../public/audio.mp3'
+        input_file = '/input.webm'
+        output_file = '/audio.mp3'
 
         # Remove the file if it already exists
         if os.path.exists(output_file):
