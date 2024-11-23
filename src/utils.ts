@@ -10,6 +10,13 @@ const transcribeUrl =
     ? "/api/transcribe"
     : `http://localhost:3000/api/transcribe`;
 
+if (process.env.ENV == "production") {
+  console.log("Running in production mode");
+} else {
+  console.log("Running in development mode");
+  console.log(convertUrl);
+}
+
 export async function startSpeechToTextConverter() {
   console.log("Transcribing audio...");
 

@@ -20,7 +20,18 @@ else:
     print(BASE_URL)
 
 # Use environment variables for configuration
-CORS(app, origins="http://localhost:49588")
+CORS(app, resources={
+    r"/api/*": {  # Apply CORS to all endpoints under `/api/*`
+        "origins": [
+            "https://https://voicenote-kv38qyz53-maguireongs-projects.vercel.app",  # Deployed frontend domain
+            "http://localhost:3000"  # Local testing
+        ],
+        "methods": ["GET", "POST"],  # Allowed HTTP methods
+        "allow_headers": ["Content-Type"],  # Allowed headers
+        "supports_credentials": True  # Enable credentials (if needed)
+    }
+})
+
 
 @app.route('/api/convert', methods=['POST'])
 def convert_audio():
