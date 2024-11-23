@@ -6,7 +6,7 @@ const getPublishedDate = () => new Date().toISOString();
 const publishUrl =
   process.env.ENV === "production"
     ? "/api/createPage"
-    : `http://localhost:58049/api/createPage`; // Local API for development
+    : `http://localhost:3000/api/createPage`; // Local API for development
 
 export async function createPage(content: string) {
   const response = await fetch(publishUrl, {

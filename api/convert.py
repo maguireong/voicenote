@@ -10,7 +10,6 @@ load_dotenv()
 
 app = Flask(__name__)
 
-PORT = os.getenv("PORT", "5001")
 FLASK_ENV = os.getenv("ENV", "development")
 BASE_URL = os.getenv("BASE_URL", ("*"))
 
@@ -21,7 +20,7 @@ else:
     print(BASE_URL)
 
 # Use environment variables for configuration
-CORS(app, origins="*")
+CORS(app, origins="http://localhost:49588")
 
 @app.route('/api/convert', methods=['POST'])
 def convert_audio():
@@ -55,4 +54,4 @@ def convert_audio():
         return str(e), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0", port=5001)
+    app.run(debug=True, host="0.0.0.0", port=5000)
