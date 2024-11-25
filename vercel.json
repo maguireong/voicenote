@@ -13,11 +13,5 @@
     "NEXT_PUBLIC_ENV": "production",
     "ENV": "production"
   },
-  "builds": [
-    {
-      "src": "api/**/*.py",
-      "use": "@vercel/python"
-    }
-  ],
   "installCommand": "apt-get update && apt-get install -y ffmpeg && pip install -r requirements.txt"
 }
