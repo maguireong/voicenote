@@ -12,5 +12,10 @@
   "env": {
     "NEXT_PUBLIC_ENV": "production",
     "ENV": "production"
+  },
+  "functions": {
+    "api/*.py": {
+      "runtime": "vercel-python@latest"
+    }
   }
 }

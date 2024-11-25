@@ -8,6 +8,9 @@ import io
 # from dotenv import load_dotenv
 # load_dotenv()
 
+AudioSegment.converter = which("ffmpeg")  # Path to ffmpeg binary
+AudioSegment.ffprobe = which("ffprobe")  # Path to ffprobe binary
+
 app = Flask(__name__)
 
 # FLASK_ENV = os.getenv("ENV", "development")
