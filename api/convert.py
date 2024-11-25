@@ -4,6 +4,7 @@ from flask import Flask, request, send_file
 from pydub import AudioSegment
 from flask_cors import CORS  # Import CORS
 import io
+from shutil import which
 
 # from dotenv import load_dotenv
 # load_dotenv()
