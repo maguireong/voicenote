@@ -9,8 +9,8 @@ from shutil import which
 # from dotenv import load_dotenv
 # load_dotenv()
 
-AudioSegment.converter = which("ffmpeg")  # Path to ffmpeg binary
-AudioSegment.ffprobe = which("ffprobe")  # Path to ffprobe binary
+AudioSegment.converter = which("../public/ffmpeg")  # Path to ffmpeg binary
+AudioSegment.ffprobe = which("../public/ffprobe")  # Path to ffprobe binary
 
 app = Flask(__name__)
 
