@@ -1,19 +1,18 @@
 import { createPage } from "./notionClient/createPage";
 
 const convertUrl =
-  process.env.ENV === "development"
-    ? `http://localhost:5000/api/convert` // Local API for development
+  process.env.NODE_ENV === "development"
+    ? `http://localhost:3000/api/convert` // Local API for development
     : "/api/convert";
 
 const transcribeUrl =
-  process.env.ENV === "development"
+  process.env.NODE_ENV === "development"
     ? `http://localhost:3000/api/transcribe`
     : "/api/transcribe";
 
-console.log("ENV in code:", process.env.ENV);
-console.log("NEXT_PUBLIC_ENV in code:", process.env.NEXT_PUBLIC_ENV);
+console.log("ENV in code:", process.env.NODE_ENV);
 console.log(convertUrl);
-if (process.env.ENV == "production") {
+if (process.env.NODE_ENV == "production") {
   console.log("Running in production mode");
 } else {
   console.log("Running in development mode");

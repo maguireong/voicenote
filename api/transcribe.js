@@ -1,5 +1,6 @@
 const { exec } = require("child_process");
 const path = require("path");
+const os = require("os");
 
 module.exports = async (req, res) => {
   if (req.method === "GET") {
@@ -7,15 +8,21 @@ module.exports = async (req, res) => {
       console.log("Transcribing...");
 
       // Define absolute paths for audio and output text file
-      // const audioPath = path.resolve(__dirname, "../public/audio.mp3");
-      // const outputPath = path.resolve(__dirname, "../public/audio.txt");
-      // const transcribeScriptPath = path.resolve(
-      //     __dirname,
-      //     "../src/scripts/transcribe.py"
-      //   )
-      const audioPath = "/tmp/audio.mp3";
+      const audioPath = "/tmp/output.mp3";
       const outputPath = "/tmp/audio.txt";
-      const transcribeScriptPath = "../src/scripts/transcribe.py";
+      console.log(audioPath);
+
+      // const response = await fetch(audioPath, { method: "HEAD" });
+      // if (response.ok) {
+      //   console.log("File exists!");
+      // } else {
+      //   console.log("File does not exist.");
+      // }
+
+      const transcribeScriptPath = path.join(
+        __dirname,
+        "../src/scripts/transcribe.py"
+      );
 
       // Execute the Python script using the correct paths
       exec(

@@ -8,9 +8,5 @@
         { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
       ]
     }
-  ],
-  "env": {
-    "NEXT_PUBLIC_ENV": "production",
-    "ENV": "production"
-  }
+  ]
 }

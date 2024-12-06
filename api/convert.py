@@ -1,16 +1,13 @@
 import base64
 import os
 from flask import Flask, request, send_file
-from pydub import AudioSegment
 from flask_cors import CORS  # Import CORS
 import io
-from shutil import which
+import ffmpeg
+import tempfile
 
 # from dotenv import load_dotenv
 # load_dotenv()
-
-AudioSegment.converter = which("../public/ffmpeg")  # Path to ffmpeg binary
-AudioSegment.ffprobe = which("../public/ffprobe")  # Path to ffprobe binary
 
 app = Flask(__name__)
 
@@ -41,36 +38,24 @@ def convert_audio():
     try:
         # Retrieve the audio data from the request
         audio_data_base64 = request.get_json()['audioData']
-        # Decode Base64 back to binary data
         audio_data = base64.b64decode(audio_data_base64)
-        audio_file = io.BytesIO(audio_data) # Convert the data to a file-like object
 
-        # Temporary file for storing the input WebM file
-        # input_file = '../public/input.webm'
-        # output_file = '../public/audio.mp3'
-        input_file = '/tmp/input.webm'
-        output_file = '/tmp/audio.mp3'
+        # Define temporary file paths
+        input_file = os.path.join(tempfile.gettempdir(), 'input.webm')
+        output_file = os.path.join(tempfile.gettempdir(), 'output.mp3')
+        print(output_file)
 
-        # Remove the file if it already exists
-        if os.path.exists(output_file):
-            os.remove(output_file)
-
-        # Save the audio data to a temporary file
-        print("saving audio data")
+        # Save the input audio file to /tmp
         with open(input_file, 'wb') as f:
             f.write(audio_data)
 
-        # Use FFmpeg to convert the WebM file to MP3
-        # ffmpeg.input(input_file).output(output_file, codec='libmp3lame', audio_bitrate='192k').run()
-        audio = AudioSegment.from_file(input_file)
-        # Export the audio with the desired settings
-        audio.export(output_file, format="mp3", bitrate="192k", codec="libmp3lame")
+        # Example: Simulate a file processing step
+        # Convert input_file to output_file (e.g., using FFmpeg)
+        ffmpeg.input(input_file).output(output_file, codec='libmp3lame', audio_bitrate='192k').run()
 
-        # Return the converted MP3 file
-        return send_file(output_file, mimetype='audio/mp3', as_attachment=True, download_name='converted_audio.mp3')
+        # Return a success response (or send the file back if needed)
+        return {"message": "File processed successfully", "outputFile": output_file}, 200
 
     except Exception as e:
-        return str(e), 500
+        return {"error": str(e)}, 500
 
-if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0", port=5000)

@@ -4,7 +4,7 @@ import fetch from "cross-fetch";
 const getPublishedDate = () => new Date().toISOString();
 
 const publishUrl =
-  process.env.ENV === "production"
+  process.env.NODE_ENV === "production"
     ? "/api/createPage"
     : `http://localhost:3000/api/createPage`; // Local API for development
 

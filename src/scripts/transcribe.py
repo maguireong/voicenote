@@ -1,4 +1,5 @@
 import whisper
+import os
 
 def transcribe_audio(audio_path, output_path):
     
